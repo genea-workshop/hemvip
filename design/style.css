@@ -330,3 +330,6 @@ li{
 	margin-left:25%;
 }
 
+.inline-block {
+  display:inline-block;
+}
