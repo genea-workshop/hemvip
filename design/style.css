@@ -64,7 +64,7 @@ input[type=number] {
 #main-video-frame-pc {
   height: 400px;
   margin: auto;
-  width: 1200px;
+  width: 1270px;
 }
 
 #video-checkbox {
@@ -130,7 +130,7 @@ body.ui-mobile-viewport, div.ui-mobile-viewport {
 	position: relative; 
 	top: 0%; 
 	margin-top: 0px; 
-	padding: 0 7%;
+	padding: 0 0.5%;
 }
 
 

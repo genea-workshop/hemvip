@@ -61,3 +61,6 @@ Temporary Items
 .apdisk
 
 *.pyc
+
+.idea
+*.bat
