@@ -72,6 +72,9 @@ function addPagesToPageManager(_pageManager, _pages) {
       var pageConfig = _pages[i];
       if (pageConfig.type == "generic") {
         _pageManager.addPage(new GenericPage(_pageManager, pageConfig));
+      } else if (pageConfig.type == "audiotest") {
+        var audioTestPage = new AudioTestPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
+        _pageManager.addPage(audioTestPage);
       } else if (pageConfig.type == "video") {
         var videoPage = new VideoPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
         _pageManager.addPage(videoPage);
