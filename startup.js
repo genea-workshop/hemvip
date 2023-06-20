@@ -86,7 +86,7 @@ function addPagesToPageManager(_pageManager, _pages) {
         _pageManager.addPage(finishPage);
       } else {
 
-        errorHandler.sendError("Type not specified help.");
+        errorHandler.sendError("Page type not implemented or it is not specified in the config.");
 
       }
     }
