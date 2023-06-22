@@ -64,3 +64,6 @@ Temporary Items
 
 .idea
 *.bat
+
+configs/*
+!configs/experiment/
