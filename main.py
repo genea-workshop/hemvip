@@ -27,6 +27,8 @@ def connect_to_db():
     )
     return client.test_database
 
+db = connect_to_db()
+
 
 @app.get("/prolific/startup.js")
 def startup():
@@ -35,7 +37,7 @@ def startup():
 
 @app.get("/configs/{test_id}/{user_id}")
 def configs(test_id: str, user_id: str):
-    status = connect_to_db().status.find_one(
+    status = db.status.find_one(
         {"userId": user_id, "testId": test_id, "status": "ACTIVE"}
     )
     data = json.load(open(status["experiment_file"]))
@@ -46,8 +48,6 @@ def configs(test_id: str, user_id: str):
 
 @app.post("/fail")
 def fail(user_id=Form(...), test_id=Form(...), sessionJSON=Form(...)):
-    db = connect_to_db()
-
     data = json.loads(sessionJSON)
     ended_date = datetime.now()
     data["date"] = ended_date
@@ -86,14 +86,13 @@ def partial(
         "interaction": interaction,
         "navigator": navigator,
     }
-    connect_to_db().partial_responses.insert_one(data)
+    db.partial_responses.insert_one(data)
     return {}
 
 
 @app.post("/save", response_class=PlainTextResponse)
 def save(sessionJSON=Form(...)):
     data = json.loads(sessionJSON)
-    db = connect_to_db()
     ended_date = datetime.now()
     data["ended"] = ended_date
     db.responses.insert_one(data)
@@ -109,8 +108,6 @@ def save(sessionJSON=Form(...)):
 def index(
     test_id: str, PROLIFIC_PID=Query(...), STUDY_ID=Query(...), SESSION_ID=Query(...)
 ):
-    db = connect_to_db()
-
     db.status.remove(
         {"status": "ACTIVE", "date": {"$lt": datetime.now() - timedelta(minutes=100)}}
     )
