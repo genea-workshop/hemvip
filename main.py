@@ -92,7 +92,13 @@ def partial(
 
 @app.post("/save", response_class=PlainTextResponse)
 def save(sessionJSON=Form(...)):
-    data = json.loads(sessionJSON)
+    try:
+        data = json.loads(sessionJSON)
+    except ValueError:
+        print('save ValueError')
+        print(sessionJSON)
+        return False
+
     ended_date = datetime.now()
     data["ended"] = ended_date
     db.responses.insert_one(data)
