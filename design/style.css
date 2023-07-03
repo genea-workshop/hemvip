@@ -23,6 +23,10 @@ input[type=number] {
   filter:  brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8)  brightness(1.05);  
 }
 
+#mushra_items .slider-color-gradient .ui-slider-track {
+  background: linear-gradient(to top, #999999 0%, #DDDDDD 100%);
+}
+
 #mushra_items .slider-color-blue .ui-slider-bg {
   background-color: blue;
 }
